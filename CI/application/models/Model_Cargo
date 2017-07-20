@@ -1,0 +1,36 @@
+<?php
+
+class Model_Cargo extends CI_Model {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->database();
+    }
+
+    function insertar($data){
+        $arrayDatos = array (
+            'Nombre' => $data['NombreCargo']            
+        );
+        try {
+            $result = $this->db->insert('Cargos', $data);
+        }catch(Exception $e){
+            throw new Exception('error in query');
+        }
+    }
+
+    function eliminar($data){
+        $this->db->delete('Cargos', $data);
+    }
+
+    function get($data){
+        $query->$this->db->get('Cargos', $data);
+        return $query->result();
+    }
+
+    public function obtenerTodos(){
+        $query = $this->db->query("SELECT * FROM Cargos;");
+        return $query->result();
+    }
+
+    
+}

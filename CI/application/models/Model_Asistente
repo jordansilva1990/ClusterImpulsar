@@ -1,0 +1,43 @@
+<?php
+
+class Model_Asistente extends CI_Model {
+
+    function __construct() {
+        parent::__construct();
+        $this->load->database();
+    }
+
+    function insertar($data){
+        $arrayDatos = array (
+            'Nombre' => $data['NombreAsistente'],
+            'Apellidos' => $data['Apellidos'],
+            'Correo' => $data['Correo'],
+            'Telefono' => $data['Telefono'],
+            'Asistencia' => $data['Asistencia'],
+            'CodigoEntrada' => $data['CodigoEntrada'], 
+            'Id_Cargo' => $data['IdCargo'], 
+            'Id_Empresa' => $data['IdEmpresa'],       
+        );
+        try {
+            $result = $this->db->insert('Asistentes', $data);
+        }catch(Exception $e){
+            throw new Exception('error in query');
+        }
+    }
+
+    function eliminar($data){
+        $this->db->delete('Asistentes', $data);
+    }
+
+    function get($data){
+        $query->$this->db->get('Asistentes', $data);
+        return $query->result();
+    }
+
+    public function obtenerTodos(){
+        $query = $this->db->query("SELECT * FROM Asistentes;");
+        return $query->result();
+    }
+
+    
+}
